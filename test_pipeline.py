@@ -217,3 +217,4 @@ class TestValidacionJSON:
             "confianza": 0.95
         }
         assert validar_json_ia(payload) is None
+

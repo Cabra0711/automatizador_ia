@@ -79,3 +79,4 @@ La inteligencia artificial jamás autoriza unilateralmente una solicitud que vul
 - **Logs de Auditoría**: Archivos `ejecucion_log.txt` y `pipeline_execution.log` con detalle de cada corrida.
 - **SLA de Atención**: Los casos marcados para revisión humana deben ser gestionados por el equipo de RRHH en un plazo máximo de 24 horas hábiles.
 - **Canal de Soporte de la Automatización**: Centro de Excelencia RPA & AI (`soporte.automatizacion@talentoandino.com`).
+

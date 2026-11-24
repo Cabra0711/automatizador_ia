@@ -276,3 +276,4 @@ Para llevar esta automatización a nivel productivo corporativo en Talento Andin
 En concordancia con las normas del reto técnico, se declara el uso asistido de herramientas de inteligencia artificial durante el desarrollo:
 - Se utilizaron asistentes de IA para apoyar la estructuración de expresiones regulares de anonimización, diseño de plantillas HTML y generación de escenarios de prueba unitaria en pytest.
 - Todo el código, lógica de negocio, esquema de base de datos y orquestación fueron rigurosamente analizados, probados, documentados y validados por el postulante.
+
