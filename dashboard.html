@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talento Andino S.A.S. - Tablero de Solicitudes RRHH</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding: 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .logo-area h1 { font-size: 22px; color: var(--primary); font-weight: 700; }
+    .logo-area p { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+    .badge-status { background: #dbeafe; color: #1e40af; padding: 6px 12px; border-radius: 9999px; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .badge-status::before { content: ""; width: 8px; height: 8px; background: #2563eb; border-radius: 50%; display: inline-block; }
+    
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: var(--card-bg); padding: 18px; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
+    .stat-val { font-size: 28px; font-weight: 700; color: var(--text); }
+    .stat-card.alert { border-left: 4px solid var(--danger); }
+    .stat-card.success { border-left: 4px solid var(--success); }
+    .stat-card.primary { border-left: 4px solid var(--primary-light); }
+
+    .controls-bar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; margin-bottom: 16px; background: var(--card-bg); padding: 14px 18px; border-radius: 10px; border: 1px solid var(--border); }
+    .search-box { flex: 1; min-width: 250px; }
+    .search-box input { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 14px; outline: none; }
+    .search-box input:focus { border-color: var(--primary-light); }
+    .filter-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-filter { background: #f1f5f9; border: 1px solid var(--border); color: var(--text); padding: 7px 14px; border-radius: 6px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .btn-filter:hover, .btn-filter.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .btn-filter.alert-btn.active { background: var(--danger); border-color: var(--danger); }
+
+    .table-container { background: var(--card-bg); border-radius: 10px; border: 1px solid var(--border); overflow-x: auto; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+    th { background: #f8fafc; padding: 12px 14px; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    td { padding: 14px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f8fafc; }
+
+    .tag { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+    .tag-vacaciones { background: #e0f2fe; color: #0369a1; }
+    .tag-certificado { background: #dcfce7; color: #15803d; }
+    .tag-incapacidad { background: #fef3c7; color: #b45309; }
+    .tag-actualizacion { background: #f3e8ff; color: #7e22ce; }
+    .tag-otro { background: #f1f5f9; color: #475569; }
+
+    .tag-rev-si { background: #fee2e2; color: #b91c1c; font-weight: 700; border: 1px solid #fca5a5; }
+    .tag-rev-no { background: #dcfce7; color: #166534; font-weight: 600; }
+    
+    .motivo-box { font-size: 12px; color: #b91c1c; max-width: 320px; line-height: 1.35; }
+    .motivo-ok { font-size: 12px; color: var(--text-muted); }
+
+    footer { margin-top: 24px; text-align: center; font-size: 12px; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-area">
+        <h1>Talento Andino S.A.S. — Tablero de Recursos Humanos</h1>
+        <p>Monitoreo en tiempo real del pipeline de automatización e Inteligencia Artificial</p>
+      </div>
+      <div>
+        <span class="badge-status">Sistema Operativo • Exactitud IA 100%</span>
+      </div>
+    </header>
+
+    <!-- Métricas Clave -->
+    <div class="stats-grid">
+      <div class="stat-card primary">
+        <div class="stat-label">Total Solicitudes</div>
+        <div class="stat-val" id="stat-total">12</div>
+      </div>
+      <div class="stat-card success">
+        <div class="stat-label">Aprobación Directa</div>
+        <div class="stat-val" id="stat-aprobadas">8</div>
+      </div>
+      <div class="stat-card alert">
+        <div class="stat-label">Requieren Revisión Humana</div>
+        <div class="stat-val" id="stat-revision">4</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Exactitud del Modelo IA</div>
+        <div class="stat-val">100%</div>
+      </div>
+    </div>
+
+    <!-- Controles y Filtros -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Buscar por colaborador, ID, área o motivo..." oninput="filtrar()">
+      </div>
+      <div class="filter-buttons">
+        <button class="btn-filter active" onclick="setFiltro('todos', this)">Todas</button>
+        <button class="btn-filter alert-btn" onclick="setFiltro('revision', this)">Requieren Revisión (4)</button>
+        <button class="btn-filter" onclick="setFiltro('aprobadas', this)">Aprobadas (8)</button>
+        <button class="btn-filter" onclick="setFiltro('VACACIONES', this)">Vacaciones</button>
+        <button class="btn-filter" onclick="setFiltro('CERTIFICADO_LABORAL', this)">Certificados</button>
+        <button class="btn-filter" onclick="setFiltro('INCAPACIDAD', this)">Incapacidades</button>
+      </div>
+    </div>
+
+    <!-- Tabla de Solicitudes -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Empleado</th>
+            <th>Área</th>
+            <th>Categoría</th>
+            <th>Confianza</th>
+            <th>Fechas</th>
+            <th>Días Hábiles</th>
+            <th>Saldo Suficiente</th>
+            <th>Revisión RRHH</th>
+            <th>Motivo / Observaciones</th>
+          </tr>
+        </thead>
+        <tbody id="tablaCuerpo">
+          <!-- Dinámico mediante JS -->
+        </tbody>
+      </table>
+    </div>
+
+    <footer>
+      Talento Andino S.A.S. • Automatizador de IA • Reto Técnico 2026 • Generado con Misión 3 y 4
+    </footer>
+  </div>
+
+  <script>
+    const datos = [
+      {"id": "S01", "empleado": "Laura Gómez", "area": "Tecnología", "categoria": "VACACIONES", "confianza": 0.96, "fechas": "2026-12-14 a 2026-12-18", "dias_habiles": 5, "saldo_suficiente": "Sí", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"},
+      {"id": "S02", "empleado": "Andrés Pérez", "area": "Comercial", "categoria": "CERTIFICADO_LABORAL", "confianza": 0.98, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"},
+      {"id": "S03", "empleado": "Camilo Díaz", "area": "Operaciones", "categoria": "INCAPACIDAD", "confianza": 0.95, "fechas": "2026-11-03 a 2026-11-05", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"},
+      {"id": "S04", "empleado": "Julián Rojas", "area": "Sin Asignar", "categoria": "ACTUALIZACION_DATOS", "confianza": 0.97, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"},
+      {"id": "S05", "empleado": "Sofía Herrera", "area": "Finanzas", "categoria": "VACACIONES", "confianza": 0.96, "fechas": "2026-12-07 a 2026-12-11", "dias_habiles": 4, "saldo_suficiente": "Sí", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"},
+      {"id": "S06", "empleado": "Felipe Castro", "area": "Tecnología", "categoria": "VACACIONES", "confianza": 0.96, "fechas": "2026-12-21 a 2026-12-31", "dias_habiles": 8, "saldo_suficiente": "No", "requiere_revision": "Sí", "motivo": "Días solicitados (8) exceden el saldo disponible (0)"},
+      {"id": "S07", "empleado": "Valentina Ruiz", "area": "Comercial", "categoria": "CERTIFICADO_LABORAL", "confianza": 0.98, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"},
+      {"id": "S08", "empleado": "María Torres", "area": "Talento Humano", "categoria": "OTRO", "confianza": 0.70, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "Sí", "motivo": "Baja confianza en la clasificación (70%) | Categoría no estándar (OTRO): requiere atención personalizada de RRHH"},
+      {"id": "S09", "empleado": "Camilo Díaz", "area": "Operaciones", "categoria": "VACACIONES", "confianza": 0.96, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "No determinado", "requiere_revision": "Sí", "motivo": "Vacaciones solicitadas sin fechas de inicio y fin definidas"},
+      {"id": "S10", "empleado": "Desconocido (E009)", "area": "No registrada", "categoria": "CERTIFICADO_LABORAL", "confianza": 0.98, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "Sí", "motivo": "Empleado inexistente en la nómina (ID: E009)"},
+      {"id": "S11", "empleado": "Andrés Pérez", "area": "Comercial", "categoria": "ACTUALIZACION_DATOS", "confianza": 0.97, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"},
+      {"id": "S12", "empleado": "Laura Gómez", "area": "Tecnología", "categoria": "INCAPACIDAD", "confianza": 0.95, "fechas": "No especificadas", "dias_habiles": 0, "saldo_suficiente": "N/A", "requiere_revision": "No", "motivo": "Aprobación automática / Solicitud regular"}
+    ];
+
+    let filtroActual = 'todos';
+
+    function getTagClass(cat) {
+      switch(cat) {
+        case 'VACACIONES': return 'tag-vacaciones';
+        case 'CERTIFICADO_LABORAL': return 'tag-certificado';
+        case 'INCAPACIDAD': return 'tag-incapacidad';
+        case 'ACTUALIZACION_DATOS': return 'tag-actualizacion';
+        default: return 'tag-otro';
+      }
+    }
+
+    function renderTabla(items) {
+      const tbody = document.getElementById('tablaCuerpo');
+      tbody.innerHTML = '';
+      if(items.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align:center; padding: 24px; color: #94a3b8;">No se encontraron solicitudes con el filtro especificado.</td></tr>';
+        return;
+      }
+      items.forEach(it => {
+        const tr = document.createElement('tr');
+        const revBadge = it.requiere_revision === 'Sí'
+          ? '<span class="tag tag-rev-si">⚠️ Requiere Revisión</span>'
+          : '<span class="tag tag-rev-no">✓ Aprobado</span>';
+
+        const motivoDisplay = it.requiere_revision === 'Sí'
+          ? `<div class="motivo-box">${it.motivo}</div>`
+          : `<div class="motivo-ok">${it.motivo}</div>`;
+
+        tr.innerHTML = `
+          <td><strong>${it.id}</strong></td>
+          <td>${it.empleado}</td>
+          <td>${it.area}</td>
+          <td><span class="tag ${getTagClass(it.categoria)}">${it.categoria}</span></td>
+          <td>${Math.round(it.confianza * 100)}%</td>
+          <td>${it.fechas}</td>
+          <td><strong>${it.dias_habiles}</strong></td>
+          <td>${it.saldo_suficiente}</td>
+          <td>${revBadge}</td>
+          <td>${motivoDisplay}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function setFiltro(tipo, btn) {
+      filtroActual = tipo;
+      document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filtrar();
+    }
+
+    function filtrar() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtrados = datos.filter(item => {
+        const matchesQuery = 
+          item.id.toLowerCase().includes(q) ||
+          item.empleado.toLowerCase().includes(q) ||
+          item.area.toLowerCase().includes(q) ||
+          item.categoria.toLowerCase().includes(q) ||
+          item.motivo.toLowerCase().includes(q);
+
+        if (!matchesQuery) return false;
+
+        if (filtroActual === 'todos') return true;
+        if (filtroActual === 'revision') return item.requiere_revision === 'Sí';
+        if (filtroActual === 'aprobadas') return item.requiere_revision === 'No';
+        return item.categoria === filtroActual;
+      });
+      renderTabla(filtrados);
+    }
+
+    // Inicializar
+    renderTabla(datos);
+  </script>
+</body>
+</html>
