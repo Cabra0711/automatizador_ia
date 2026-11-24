@@ -1,0 +1,76 @@
+{
+  "a_solicitudes_por_categoria_y_area": [
+    {
+      "categoria": "CERTIFICADO_LABORAL",
+      "area": "Comercial",
+      "total": 2
+    },
+    {
+      "categoria": "VACACIONES",
+      "area": "Tecnología",
+      "total": 2
+    },
+    {
+      "categoria": "ACTUALIZACION_DATOS",
+      "area": "Comercial",
+      "total": 1
+    },
+    {
+      "categoria": "ACTUALIZACION_DATOS",
+      "area": "Sin Asignar",
+      "total": 1
+    },
+    {
+      "categoria": "CERTIFICADO_LABORAL",
+      "area": "Empleado no registrado",
+      "total": 1
+    },
+    {
+      "categoria": "INCAPACIDAD",
+      "area": "Operaciones",
+      "total": 1
+    },
+    {
+      "categoria": "INCAPACIDAD",
+      "area": "Tecnología",
+      "total": 1
+    },
+    {
+      "categoria": "OTRO",
+      "area": "Talento Humano",
+      "total": 1
+    },
+    {
+      "categoria": "VACACIONES",
+      "area": "Finanzas",
+      "total": 1
+    },
+    {
+      "categoria": "VACACIONES",
+      "area": "Operaciones",
+      "total": 1
+    }
+  ],
+  "b_solicitudes_empleados_inexistentes": [
+    {
+      "id_solicitud": "S10",
+      "id_empleado": "E009",
+      "fecha": "2026-11-06",
+      "texto": "Solicito certificado laboral para trámite de visa."
+    }
+  ],
+  "c_empleados_menos_de_5_dias": [
+    {
+      "id_empleado": "E006",
+      "nombre": "Camilo Díaz",
+      "area": "Operaciones",
+      "dias_disponibles": 3
+    },
+    {
+      "id_empleado": "E008",
+      "nombre": "Felipe Castro",
+      "area": "Tecnología",
+      "dias_disponibles": 0
+    }
+  ]
+}
