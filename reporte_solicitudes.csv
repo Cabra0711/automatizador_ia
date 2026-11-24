@@ -1,0 +1,13 @@
+﻿id,empleado,area,categoria,confianza,fechas,dias_habiles,saldo_suficiente,requiere_revision,motivo
+S01,Laura Gómez,Tecnología,VACACIONES,0.96,2026-12-14 a 2026-12-18,5,Sí,No,Aprobación automática / Solicitud regular
+S02,Andrés Pérez,Comercial,CERTIFICADO_LABORAL,0.98,No especificadas,0,N/A,No,Aprobación automática / Solicitud regular
+S03,Camilo Díaz,Operaciones,INCAPACIDAD,0.95,2026-11-03 a 2026-11-05,0,N/A,No,Aprobación automática / Solicitud regular
+S04,Julián Rojas,Sin Asignar,ACTUALIZACION_DATOS,0.97,No especificadas,0,N/A,No,Aprobación automática / Solicitud regular
+S05,Sofía Herrera,Finanzas,VACACIONES,0.96,2026-12-07 a 2026-12-11,4,Sí,No,Aprobación automática / Solicitud regular
+S06,Felipe Castro,Tecnología,VACACIONES,0.96,2026-12-21 a 2026-12-31,8,No,Sí,Días solicitados (8) exceden el saldo disponible (0)
+S07,Valentina Ruiz,Comercial,CERTIFICADO_LABORAL,0.98,No especificadas,0,N/A,No,Aprobación automática / Solicitud regular
+S08,María Torres,Talento Humano,OTRO,0.7,No especificadas,0,N/A,Sí,Baja confianza en la clasificación (70%) | Categoría no estándar (OTRO): requiere atención personalizada de RRHH
+S09,Camilo Díaz,Operaciones,VACACIONES,0.96,No especificadas,0,No determinado,Sí,Vacaciones solicitadas sin fechas de inicio y fin definidas
+S10,Desconocido (E009),No registrada,CERTIFICADO_LABORAL,0.98,No especificadas,0,N/A,Sí,Empleado inexistente en la nómina (ID: E009)
+S11,Andrés Pérez,Comercial,ACTUALIZACION_DATOS,0.97,No especificadas,0,N/A,No,Aprobación automática / Solicitud regular
+S12,Laura Gómez,Tecnología,INCAPACIDAD,0.95,No especificadas,0,N/A,No,Aprobación automática / Solicitud regular
