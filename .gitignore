@@ -10,5 +10,10 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
+# Archivos de logs de ejecución en caliente
+*.log
+ejecucion_log.txt
+pipeline_execution.log
+
 # Temporales
 reto_texto_completo.txt
